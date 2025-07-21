@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { supabase, isAuthenticated, getCurrentUser } from '../services/supabase';
-import { auth as authService } from '../services/api';
+import { supabase, getCurrentUser } from '../services/supabase';
 import { toast } from 'react-toastify';
 
 interface User {
@@ -107,9 +106,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           isGuest: false,
         });
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Signup error:', error);
-      toast.error(error.message || 'Failed to create account');
+      const message = error instanceof Error ? error.message : 'Failed to create account';
+      toast.error(message);
       throw error;
     } finally {
       setIsLoading(false);
@@ -138,9 +138,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           isGuest: false,
         });
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Login error:', error);
-      toast.error(error.message || 'Failed to log in');
+      const message = error instanceof Error ? error.message : 'Failed to log in';
+      toast.error(message);
       throw error;
     } finally {
       setIsLoading(false);
@@ -186,9 +187,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null);
         toast.success('Logged out successfully');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Logout error:', error);
-      toast.error(error.message || 'Failed to log out');
+      const message = error instanceof Error ? error.message : 'Failed to log out';
+      toast.error(message);
       throw error;
     } finally {
       setIsLoading(false);

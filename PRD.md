@@ -220,3 +220,32 @@ You are an AI assistant for the LEGAL ORACLE platform, specializing in legal arb
 - **Model Validation**: Ensure predictions align with actual outcomes
 - **Scalability**: Process large volumes of legal data in real-time
 - **Ethical Use**: Prevent misuse of predictive insights
+
+---
+
+## Caselaw API Integration & Backend Service (2025 Update)
+
+LEGAL ORACLE now features a robust historical caselaw API and backend service, enabling:
+- Semantic search for similar cases (FAISS + sentence-transformers)
+- Historical precedent analysis for outcome prediction
+- Judge behavioral pattern analysis
+- Legal evolution and jurisdictional outcome comparison
+- Precedent impact simulation
+
+**API Endpoints:**
+- `/api/v1/caselaw/search`, `/api/v1/caselaw/similar`, `/api/v1/caselaw/judge-analysis`, `/api/v1/caselaw/health`
+
+**Backend Setup:**
+- Python 3.10.x recommended
+- FastAPI service in `caselaw_service/`
+- See `caselaw_service/README.md` for setup, environment, and troubleshooting
+- Supabase tables for logging and caching (see `create_tables.sql`)
+
+**Database Tables:**
+- `cases`, `strategies`, `simulations`, `regulatory_forecasts`, `jurisdiction_recommendations`, `precedent_simulations`, `legal_evolution_models`, `compliance_optimizations`, `landmark_predictions`, `arbitrage_alerts`, `caselaw_searches`, `judge_analysis_cache`
+
+**Developer Notes:**
+- Modular API, supports streaming for large datasets
+- For local dev, set `SKIP_JWT_VERIFY=true` in `.env`
+- See `wrapper.md` for user stories, API usage, and integration patterns
+- See `caselaw_service/README.md` for dev workflow and troubleshooting

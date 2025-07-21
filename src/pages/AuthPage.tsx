@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Scale, Mail, Lock, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { toast } from 'react-toastify';
+
 
 export function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -147,7 +147,7 @@ export function AuthPage() {
                       name="role"
                       value={role.value}
                       checked={selectedRole === role.value}
-                      onChange={(e) => setSelectedRole(e.target.value as any)}
+                                            onChange={(e) => setSelectedRole(e.target.value as typeof selectedRole)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <div className="ml-3">

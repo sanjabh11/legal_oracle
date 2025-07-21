@@ -14,6 +14,7 @@ from caselaw_service.models import CaseQuery, SimilarityQuery, CaseResult, Searc
 from caselaw_service.auth import get_current_user
 from caselaw_service.courtlistener_proxy import router as courtlistener_router
 from caselaw_service.oracle_api import router as oracle_router
+from caselaw_service.dataset_api import router as dataset_router
 from pydantic import ValidationError
 import httpx
 import datasets
@@ -36,7 +37,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000", "http://127.0.0.1:3000",
-        "http://localhost:5173", "http://127.0.0.1:5173"
+        "http://localhost:5173", "http://127.0.0.1:5173",
+        "http://localhost:5174", "http://127.0.0.1:5174"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -47,6 +49,8 @@ app.add_middleware(
 app.include_router(courtlistener_router)
 # Mount Oracle API endpoints
 app.include_router(oracle_router)
+# Mount Dataset API endpoints
+app.include_router(dataset_router)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)

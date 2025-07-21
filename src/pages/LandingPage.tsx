@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Scale, Brain, TrendingUp, Shield, Zap, Users, Award, Globe } from 'lucide-react';
 

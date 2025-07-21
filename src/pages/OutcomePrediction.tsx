@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Brain, Calendar, MapPin, DollarSign, FileText } from 'lucide-react';
+import { Brain, MapPin, DollarSign, FileText } from 'lucide-react';
+import { CaseLawOpinion } from '../types/caselaw';
 import { cases } from '../services/api';
 import { CaseLawOpinionCard } from '../components/CaseLawOpinionCard';
 import { HuggingFaceOpinionCard } from '../components/HuggingFaceOpinionCard';
@@ -16,15 +17,15 @@ export function OutcomePrediction() {
     contractValue: '',
     judgeInfo: '',
   });
-  const [prediction, setPrediction] = useState<any>(null);
+  const [prediction, setPrediction] = useState<any>(null); // Prediction type can be defined later if needed
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [caselawResults, setCaselawResults] = useState<any[]>([]);
+  const [caselawResults, setCaselawResults] = useState<CaseLawOpinion[]>([]);
   const [caselawLoading, setCaselawLoading] = useState(false);
   const [caselawError, setCaselawError] = useState<string | null>(null);
 
   // Hugging Face results state
-  const [hfResults, setHfResults] = useState<any[]>([]);
+  const [hfResults, setHfResults] = useState<CaseLawOpinion[]>([]);
   const [hfLoading, setHfLoading] = useState(false);
   const [hfError, setHfError] = useState<string | null>(null);
 
@@ -92,8 +93,8 @@ export function OutcomePrediction() {
       if (result && result.outcomeProbabilities) {
         fullPrediction.outcomeProbabilities = {
           ...result.outcomeProbabilities,
-          explanation: result.outcomeProbabilities.explanation || result.outcomeProbabilities.reasoning || result.explanation || '',
-          isLLMFallback: result.outcomeProbabilities.isLLMFallback ?? result.isLLMFallback ?? false,
+          explanation: result.outcomeProbabilities?.explanation || result.outcomeProbabilities?.reasoning || result.explanation || '',
+          isLLMFallback: result.outcomeProbabilities?.isLLMFallback ?? result.isLLMFallback ?? false,
         };
       }
       setPrediction(fullPrediction);
@@ -363,7 +364,7 @@ export function OutcomePrediction() {
                   ) : (
                     <>
                       {Array.isArray(hfResults) && hfResults.length > 0 ? (
-                        hfResults.map((op: any, i: number) => (
+                        hfResults.map((op: CaseLawOpinion, i: number) => (
                           <HuggingFaceOpinionCard key={i} opinion={op} highlight={formData.keyFacts} />
                         ))
                       ) : (
@@ -384,7 +385,7 @@ export function OutcomePrediction() {
                   ) : (
                     <>
                       {Array.isArray(caselawResults) && caselawResults.length > 0 ? (
-                        caselawResults.map((op: any, i: number) => (
+                        caselawResults.map((op: CaseLawOpinion, i: number) => (
                           <CaseLawOpinionCard key={i} opinion={op} />
                         ))
                       ) : (

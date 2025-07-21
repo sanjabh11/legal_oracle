@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Zap, Bell, TrendingUp, Clock, DollarSign } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { arbitrage } from '../services/api';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ErrorMessage } from '../components/ErrorMessage';
+
+interface Alert {
+  id: string;
+  title: string;
+  description: string;
+  urgency: 'High' | 'Medium' | 'Low';
+  potentialSavings: number;
+  expirationDate: string;
+  confidence: number;
+  actionRequired: string;
+  jurisdiction: string;
+  created: string;
+}
 
 export function ArbitrageAlerts() {
   const { user } = useAuth();
@@ -13,7 +26,7 @@ export function ArbitrageAlerts() {
     legalInterests: [] as string[],
     alertFrequency: 'daily',
   });
-  const [alerts, setAlerts] = useState<any[]>([]);
+    const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(false);
   const [settingsLoading, setSettingsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,6 +54,34 @@ export function ArbitrageAlerts() {
     { value: 'weekly', label: 'Weekly' },
     { value: 'monthly', label: 'Monthly' },
   ];
+
+  const handleSaveSettings = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Save settings to localStorage
+      localStorage.setItem('legal_oracle_alert_settings', JSON.stringify(alertSettings));
+      
+      // Only generate alerts if jurisdiction and at least one interest is selected
+      if (alertSettings.jurisdiction && alertSettings.legalInterests.length > 0) {
+        // Get alerts from API
+        const result = await arbitrage.getAlerts(
+          alertSettings.userRole,
+          alertSettings.jurisdiction,
+          alertSettings.legalInterests,
+          alertSettings.alertFrequency
+        );
+        
+        setAlerts(result.opportunities);
+      }
+    } catch (error) {
+      console.error('Error saving alert settings:', error);
+      setError('Failed to save settings or generate alerts. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, [alertSettings]);
 
   useEffect(() => {
     // Load existing alerts and settings
@@ -70,7 +111,7 @@ export function ArbitrageAlerts() {
     };
     
     fetchData();
-  }, []);
+  }, [handleSaveSettings]);
 
   const handleInterestToggle = (interest: string) => {
     setAlertSettings(prev => ({
@@ -81,33 +122,7 @@ export function ArbitrageAlerts() {
     }));
   };
 
-  const handleSaveSettings = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      // Save settings to localStorage
-      localStorage.setItem('legal_oracle_alert_settings', JSON.stringify(alertSettings));
-      
-      // Only generate alerts if jurisdiction and at least one interest is selected
-      if (alertSettings.jurisdiction && alertSettings.legalInterests.length > 0) {
-        // Get alerts from API
-        const result = await arbitrage.getAlerts(
-          alertSettings.userRole,
-          alertSettings.jurisdiction,
-          alertSettings.legalInterests,
-          alertSettings.alertFrequency
-        );
-        
-        setAlerts(result.opportunities);
-      }
-    } catch (error) {
-      console.error('Error saving alert settings:', error);
-      setError('Failed to save settings or generate alerts. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   const dismissAlert = (alertId: string) => {
     const updatedAlerts = alerts.filter(alert => alert.id !== alertId);
@@ -354,7 +369,7 @@ export function ArbitrageAlerts() {
               </div>
               <div className="bg-white rounded-lg shadow-md p-6 text-center">
                 <div className="text-2xl font-bold text-blue-600">
-                  {Math.round(alerts.reduce((sum, alert) => sum + alert.confidence, 0) / alerts.length)}%
+                  {Math.round(alerts.reduce((sum: number, alert) => sum + alert.confidence, 0) / alerts.length)}%
                 </div>
                 <div className="text-sm text-gray-600">Avg Confidence</div>
               </div>

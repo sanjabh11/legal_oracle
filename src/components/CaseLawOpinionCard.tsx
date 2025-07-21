@@ -1,7 +1,8 @@
-import React from 'react';
+
+import { CaseLawOpinion } from '../types/caselaw';
 
 export interface CaseLawOpinionCardProps {
-  opinion: any;
+  opinion: CaseLawOpinion;
 }
 
 export function CaseLawOpinionCard({ opinion }: CaseLawOpinionCardProps) {
@@ -19,7 +20,7 @@ export function CaseLawOpinionCard({ opinion }: CaseLawOpinionCardProps) {
     <div className="border rounded p-3 mb-3 bg-gray-50 shadow-sm">
       <div className="font-bold text-lg mb-1">{title}</div>
       <div className="text-sm text-gray-500 mb-1">{court}{date && `, ${date}`}</div>
-      {summary && <div className="mb-2 text-gray-700"><span className="font-semibold">Summary:</span> {summary}{opinion.plain_text?.length > 300 && '...'}</div>}
+      {summary && <div className="mb-2 text-gray-700"><span className="font-semibold">Summary:</span> {summary}{opinion.plain_text && opinion.plain_text.length > 300 && '...'}</div>}
       {pdfUrl && (
         <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline mr-4">
           Read Full Opinion

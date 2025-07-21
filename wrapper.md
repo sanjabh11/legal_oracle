@@ -1602,4 +1602,4 @@ export const useCaselaw = () => {
         ...options,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization
+          'Authorization 

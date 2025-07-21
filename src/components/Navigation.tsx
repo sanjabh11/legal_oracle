@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Scale, Menu, X, LogOut, User, Settings } from 'lucide-react';
+import { Scale, Menu, X, LogOut, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export function Navigation() {
@@ -138,6 +138,32 @@ export function Navigation() {
                   {item.name}
                 </Link>
               ))}
+              {/* Quick CaseLaw Search on mobile */}
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const input = form.querySelector('input[name="quick-caselaw-search"]') as HTMLInputElement;
+                  if (input && input.value.trim()) {
+                    navigate(`/caselaw-demo?query=${encodeURIComponent(input.value.trim())}`);
+                    setIsOpen(false);
+                  }
+                }}
+                className="flex items-center px-3 py-2"
+              >
+                <input
+                  name="quick-caselaw-search"
+                  type="text"
+                  placeholder="Quick CaseLaw Search"
+                  className="flex-1 rounded-l px-2 py-1 border border-gray-300 text-sm"
+                />
+                <button
+                  type="submit"
+                  className="rounded-r px-3 py-1 bg-blue-700 text-white text-sm"
+                >
+                  Go
+                </button>
+              </form>
               <Link
                 to="/profile"
                 onClick={() => setIsOpen(false)}

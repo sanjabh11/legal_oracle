@@ -1,5 +1,49 @@
 import React, { useState } from 'react';
-import { Shield, CheckCircle, AlertTriangle, Target } from 'lucide-react';
+import { Shield, CheckCircle, Target } from 'lucide-react';
+
+interface RiskCategory {
+  category: string;
+  risk: 'High' | 'Medium' | 'Low';
+  score: number;
+  priority: number;
+}
+
+interface Recommendation {
+  category: string;
+  priority: 'High' | 'Medium' | 'Low';
+  action: string;
+  timeline: string;
+  cost: string;
+  impact: string;
+  steps: readonly string[];
+}
+
+interface CostBenefitAnalysis {
+  totalInvestment: string;
+  annualSavings: string;
+  riskReduction: string;
+  roi: string;
+  paybackPeriod: string;
+}
+
+interface ImplementationPhase {
+  duration: string;
+  focus: string;
+  actions: readonly string[];
+}
+
+interface OptimizationResult {
+  complianceScore: number;
+  riskAssessment: {
+    readonly overall: 'High' | 'Medium' | 'Low';
+    readonly categories: readonly RiskCategory[];
+  };
+  readonly recommendations: readonly Recommendation[];
+  readonly costBenefitAnalysis: CostBenefitAnalysis;
+  readonly implementationPlan: {
+    readonly [key: string]: ImplementationPhase;
+  };
+}
 
 export function ComplianceOptimization() {
   const [complianceData, setComplianceData] = useState({
@@ -8,7 +52,7 @@ export function ComplianceOptimization() {
     currentPractices: '',
     companySize: '',
   });
-  const [optimization, setOptimization] = useState<any>(null);
+    const [optimization, setOptimization] = useState<OptimizationResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   const industries = [
@@ -112,15 +156,23 @@ export function ComplianceOptimization() {
           phase2: {
             duration: '3-9 months',
             focus: 'System implementations',
-            actions: ['Security controls', 'Monitoring systems', 'Documentation'],
+            actions: [
+              'Establish SOC 2 controls',
+              'Update employment policies',
+              'Cybersecurity enhancements',
+            ],
           },
           phase3: {
             duration: '9-12 months',
-            focus: 'Certification and optimization',
-            actions: ['Third-party audits', 'Continuous monitoring', 'Process refinement'],
+            focus: 'Ongoing monitoring and optimization',
+            actions: [
+              'Regular compliance reviews',
+              'Third-party audits',
+              'Continuous improvement process',
+            ],
           },
         },
-      };
+      } as const;
 
       setOptimization(mockOptimization);
       setLoading(false);
@@ -263,7 +315,7 @@ export function ComplianceOptimization() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-6">Risk Assessment</h3>
                 
                 <div className="space-y-4">
-                  {optimization.riskAssessment.categories.map((category: any, index: number) => (
+                  {optimization.riskAssessment.categories.map((category: RiskCategory, index: number) => (
                     <div key={index} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
                         <h4 className="font-medium text-gray-900">{category.category}</h4>
@@ -306,7 +358,7 @@ export function ComplianceOptimization() {
                 </h3>
                 
                 <div className="space-y-6">
-                  {optimization.recommendations.map((rec: any, index: number) => (
+                                    {optimization.recommendations.map((rec: Recommendation, index: number) => (
                     <div key={index} className="border border-gray-200 rounded-lg p-6">
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -391,7 +443,7 @@ export function ComplianceOptimization() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-6">Implementation Plan</h3>
                 
                 <div className="space-y-6">
-                  {Object.entries(optimization.implementationPlan).map(([phase, details]: [string, any]) => (
+                                    {Object.entries(optimization.implementationPlan).map(([phase, details]: [string, ImplementationPhase]) => (
                     <div key={phase} className="border-l-4 border-red-600 pl-4">
                       <h4 className="font-medium text-gray-900 mb-2">
                         {phase.replace('phase', 'Phase ').toUpperCase()} - {details.focus}
