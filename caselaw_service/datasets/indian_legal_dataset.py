@@ -29,6 +29,7 @@ class IndianLegalDataset(BaseStreamingDataset):
         return self._ds
 
     def search(self, keyword: str, limit: int = 10):
+        """Keyword search over text field."""
         ds = self._get_dataset()
         results = []
         for doc in ds:
@@ -37,6 +38,49 @@ class IndianLegalDataset(BaseStreamingDataset):
                 if len(results) >= limit:
                     break
         return results
+
+    def semantic_search(self, query: str, limit: int = 10):
+        """Semantic search using sentence-transformers embeddings."""
+        try:
+            from sentence_transformers import SentenceTransformer
+            import numpy as np
+            from sklearn.metrics.pairwise import cosine_similarity
+
+            model = SentenceTransformer('all-MiniLM-L6-v2')
+            query_embedding = model.encode([query])
+
+            ds = self._get_dataset()
+            results = []
+            texts = []
+            docs = []
+
+            # Collect texts and docs
+            for doc in ds:
+                texts.append(doc.get("text", ""))
+                docs.append(doc)
+                if len(texts) >= 1000:  # Limit for streaming performance
+                    break
+
+            if not texts:
+                return []
+
+            doc_embeddings = model.encode(texts)
+            similarities = cosine_similarity(query_embedding, doc_embeddings)[0]
+
+            # Get top results
+            top_indices = np.argsort(similarities)[-limit:][::-1]
+            for idx in top_indices:
+                if similarities[idx] > 0.1:  # Threshold
+                    results.append(docs[idx])
+
+            return results
+
+        except ImportError:
+            # Fallback to keyword search if sentence-transformers not available
+            return self.search(query, limit)
+        except Exception as e:
+            print(f"Semantic search error: {e}")
+            return self.search(query, limit)
 
     # ---------------- Advanced helpers -----------------
     def search_by_legal_area_and_state(self, legal_area: str, state: str | None = None, limit: int = 100):

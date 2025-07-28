@@ -13,8 +13,12 @@ from datetime import datetime
 from caselaw_service.models import CaseQuery, SimilarityQuery, CaseResult, SearchLog
 from caselaw_service.auth import get_current_user
 from caselaw_service.courtlistener_proxy import router as courtlistener_router
-from caselaw_service.oracle_api import router as oracle_router
 from caselaw_service.dataset_api import router as dataset_router
+from caselaw_service.oracle_api import router as oracle_router
+from caselaw_service.admin_api import router as admin_router
+from caselaw_service.export_api import router as export_router
+from caselaw_service.feedback import router as feedback_router
+from caselaw_service.analytics import router as analytics_router
 from pydantic import ValidationError
 import httpx
 import datasets

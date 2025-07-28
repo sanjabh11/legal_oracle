@@ -1,0 +1,234 @@
+{
+  "summary": {
+    "total_tests": 26,
+    "passed": 0,
+    "failed": 26,
+    "success_rate": 0.0
+  },
+  "test_breakdown": {
+    "user_story": {
+      "pass": 0,
+      "fail": 5,
+      "total": 5
+    },
+    "api_endpoint": {
+      "pass": 0,
+      "fail": 10,
+      "total": 10
+    },
+    "dataset_wrapper": {
+      "pass": 0,
+      "fail": 7,
+      "total": 7
+    },
+    "security": {
+      "pass": 0,
+      "fail": 2,
+      "total": 2
+    },
+    "performance": {
+      "pass": 0,
+      "fail": 2,
+      "total": 2
+    }
+  },
+  "detailed_results": [
+    {
+      "type": "user_story",
+      "story": "Predict Case Outcomes",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "user_story",
+      "story": "Predict Case Outcomes",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "user_story",
+      "story": "Optimize Legal Strategies",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "user_story",
+      "story": "Forecast Regulatory Changes",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "user_story",
+      "story": "Optimize Compliance",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/datasets",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/datasets/indian_legal_dataset/search",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/datasets/indian_legal_dataset/semantic_search",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/admin/health",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/admin/metrics",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/admin/datasets",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/export/datasets/indian_legal_dataset/csv?limit=10",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/export/datasets/indian_legal_dataset/json?limit=10",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/feedback/submit",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "api_endpoint",
+      "endpoint": "/api/v1/feedback/stats",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "indian_legal_dataset",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "pile_of_law",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "inlegalbert",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "legal_summarization",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "legal_contracts",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "patent_data",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "dataset_wrapper",
+      "dataset": "court_cases",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "security",
+      "test": "authentication",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "security",
+      "test": "rate_limiting",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "performance",
+      "test": "outcome_prediction",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "performance",
+      "test": "dataset_search",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    }
+  ],
+  "performance_metrics": [
+    {
+      "type": "performance",
+      "test": "outcome_prediction",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    },
+    {
+      "type": "performance",
+      "test": "dataset_search",
+      "status": "FAIL",
+      "error": "All connection attempts failed"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "issue": "Failed tests detected",
+      "action": "Review and fix failed test cases",
+      "count": 26
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "Performance benchmarks not met",
+      "action": "Optimize API response times and caching",
+      "affected_tests": [
+        {
+          "type": "performance",
+          "test": "outcome_prediction",
+          "status": "FAIL",
+          "error": "All connection attempts failed"
+        },
+        {
+          "type": "performance",
+          "test": "dataset_search",
+          "status": "FAIL",
+          "error": "All connection attempts failed"
+        }
+      ]
+    }
+  ]
+}

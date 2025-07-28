@@ -6,16 +6,27 @@ class LegalSummarizationDataset(BaseStreamingDataset):
     """Streaming wrapper for lighteval/legal_summarization and summarizer endpoint."""
     HF_DATASET = "lighteval/legal_summarization"
 
+    def _get_dataset(self):
+        return load_dataset(self.HF_DATASET, split="train", streaming=True)
+
     def search(self, keyword: str, limit: int = 10):
+        """Search for summaries containing the keyword."""
+        ds = self._get_dataset()
+        results = []
+        for doc in ds:
+            if keyword.lower() in doc.get("summary", "").lower():
+                results.append(doc)
+                if len(results) >= limit:
+                    break
+        return results
+
+    def semantic_search(self, query: str, limit: int = 10):
+        """Semantic search using embeddings."""
+        from .semantic_search import semantic_search_docs
+        ds = self._get_dataset()
+        docs = list(ds.take(limit * 10))
         try:
-            ds = load_dataset(self.HF_DATASET, split="train", streaming=True)
-            results = []
-            for doc in ds:
-                if keyword.lower() in doc.get("article", "").lower():
-                    results.append(doc)
-                    if len(results) >= limit:
-                        break
-            return results
+            return semantic_search_docs(docs, query, text_field="summary", limit=limit)
         except Exception:
             return []
 

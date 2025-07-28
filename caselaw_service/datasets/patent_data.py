@@ -34,3 +34,10 @@ class PatentDataDataset(BaseStreamingDataset):
                 if len(results) >= limit:
                     break
         return results
+
+    def semantic_search(self, query: str, limit: int = 10):
+        """Semantic search using embeddings."""
+        from .semantic_search import semantic_search_docs
+        ds = self._get_dataset()
+        docs = list(ds.take(limit * 10))
+        return semantic_search_docs(docs, query, text_field="abstract", limit=limit)

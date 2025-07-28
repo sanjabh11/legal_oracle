@@ -17,3 +17,21 @@ class InLegalBERTDataset(BaseStreamingDataset):
             outputs = self.model(**inputs)
         # Return [CLS] embedding
         return outputs.last_hidden_state[:, 0, :].squeeze().tolist()
+
+    def search(self, keyword: str, limit: int = 10):
+        """Search for documents containing the keyword."""
+        ds = self._get_dataset()
+        results = []
+        for doc in ds:
+            if keyword.lower() in doc.get("text", "").lower():
+                results.append(doc)
+                if len(results) >= limit:
+                    break
+        return results
+
+    def semantic_search(self, query: str, limit: int = 10):
+        """Semantic search using embeddings."""
+        from .semantic_search import semantic_search_docs
+        ds = self._get_dataset()
+        docs = list(ds.take(limit * 10))
+        return semantic_search_docs(docs, query, limit=limit)

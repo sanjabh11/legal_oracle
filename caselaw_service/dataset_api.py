@@ -79,3 +79,16 @@ def analyze_indian_trends(legal_area: str = Query(...)):
         return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/indian_legal/semantic_search")
+def semantic_search_indian_legal(
+    query: str = Query(...),
+    limit: int = Query(10, ge=1, le=50)
+):
+    """Semantic search in Indian Legal Dataset using embeddings."""
+    try:
+        ds = get_dataset("indian_legal_dataset")
+        results = ds.semantic_search(query, limit)
+        return {"results": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

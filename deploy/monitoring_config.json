@@ -1,0 +1,26 @@
+{
+  "alerts": {
+    "high_error_rate": {
+      "threshold": 5,
+      "time_window": "5m",
+      "notification": ["email", "slack"]
+    },
+    "high_response_time": {
+      "threshold": 500,
+      "time_window": "5m", 
+      "notification": ["email", "slack"]
+    },
+    "high_memory_usage": {
+      "threshold": 80,
+      "time_window": "5m",
+      "notification": ["email", "slack"]
+    }
+  },
+  "metrics": {
+    "api_requests": true,
+    "response_times": true,
+    "error_rates": true,
+    "active_users": true,
+    "database_performance": true
+  }
+}
