@@ -15,7 +15,9 @@ from caselaw_service.auth import get_current_user
 from caselaw_service.courtlistener_proxy import router as courtlistener_router
 from caselaw_service.dataset_api import router as dataset_router
 from caselaw_service.oracle_api import router as oracle_router
+from caselaw_service.simulation_api import router as simulation_router
 from caselaw_service.admin_api import router as admin_router
+from caselaw_service.low_priority_endpoints import router as low_priority_router
 from caselaw_service.export_api import router as export_router
 from caselaw_service.feedback import router as feedback_router
 from caselaw_service.analytics import router as analytics_router
@@ -53,8 +55,12 @@ app.add_middleware(
 app.include_router(courtlistener_router)
 # Mount Oracle API endpoints
 app.include_router(oracle_router)
+# Mount Simulation API endpoints
+app.include_router(simulation_router)
 # Mount Dataset API endpoints
 app.include_router(dataset_router)
+# Mount low-priority endpoints (trends/model, arbitrage/alerts, etc.)
+app.include_router(low_priority_router)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -228,7 +234,7 @@ async def _load_dataset_cache():
     if _dataset_cache:
         return _dataset_cache
     try:
-        ds_iter = datasets.load_dataset("caselaw/justia-opinions", split="train", streaming=True)
+        ds_iter = hf_datasets.load_dataset("caselaw/justia-opinions", split="train", streaming=True)
         for i, case in enumerate(ds_iter):
             _dataset_cache.append(case)
             if i + 1 >= MAX_CACHE_CASES:

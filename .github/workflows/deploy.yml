@@ -25,9 +25,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Run tests
+    - name: Run backend tests (pytest)
       run: |
-        python3 test_comprehensive.py
+        pip install pytest pytest-cov
+        pytest --cov=caselaw_service --cov-report=xml --maxfail=2 --disable-warnings -q
+        echo "Test coverage report generated: coverage.xml"
+
+    - name: Install frontend dependencies
+      run: |
+        npm ci
+
+    - name: Run frontend tests (vitest)
+      run: |
+        npm run test
         
     - name: Run security scan
       run: |

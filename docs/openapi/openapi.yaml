@@ -1,0 +1,733 @@
+openapi: 3.0.3
+info:
+  title: Legal Oracle API
+  description: AI-powered legal intelligence platform
+  version: 1.0.0
+  contact:
+    name: Legal Oracle Team
+    email: support@legaloracle.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+  - url: https://legal-oracle.netlify.app
+    description: Production server
+
+security:
+  - bearerAuth: []
+
+paths:
+  /api/v1/outcome/predict:
+    post:
+      tags:
+        - oracle
+      summary: Predict case outcomes
+      description: Predict legal case outcomes based on case details
+      operationId: predictOutcome
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OutcomeRequest'
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutcomeResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/strategy/optimize:
+    post:
+      tags:
+        - oracle
+      summary: Optimize legal strategies
+      description: Generate optimal legal strategies for a case
+      operationId: optimizeStrategy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StrategyRequest'
+      responses:
+        '200':
+          description: Strategy recommendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StrategyResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/simulation/run:
+    post:
+      tags:
+        - simulation
+      summary: Simulate legal strategies
+      description: Simulate legal strategies against AI opponents
+      operationId: runSimulation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimulationRequest'
+      responses:
+        '200':
+          description: Simulation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/jurisdiction/optimize:
+    post:
+      tags:
+        - oracle
+      summary: Optimize jurisdiction selection
+      description: Recommend optimal jurisdiction for a case
+      operationId: optimizeJurisdiction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JurisdictionRequest'
+      responses:
+        '200':
+          description: Jurisdiction recommendation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JurisdictionResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/compliance/optimize:
+    post:
+      tags:
+        - oracle
+      summary: Optimize compliance strategy
+      description: Generate compliance optimization recommendations
+      operationId: optimizeCompliance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplianceRequest'
+      responses:
+        '200':
+          description: Compliance recommendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/trends/forecast:
+    post:
+      tags:
+        - oracle
+      summary: Forecast regulatory changes
+      description: Forecast upcoming regulatory changes
+      operationId: forecastTrends
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrendsRequest'
+      responses:
+        '200':
+          description: Regulatory forecast
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendsResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/precedent/simulate:
+    post:
+      tags:
+        - oracle
+      summary: Simulate precedent impact
+      description: Simulate the impact of a legal precedent
+      operationId: simulatePrecedent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrecedentRequest'
+      responses:
+        '200':
+          description: Precedent impact analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrecedentResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/precedent/predict:
+    post:
+      tags:
+        - oracle
+      summary: Predict landmark cases
+      description: Predict the likelihood of a case becoming landmark
+      operationId: predictLandmark
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LandmarkRequest'
+      responses:
+        '200':
+          description: Landmark prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LandmarkResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/arbitrage/alerts:
+    post:
+      tags:
+        - oracle
+      summary: Generate arbitrage alerts
+      description: Generate temporary legal advantages or loopholes for a user
+      operationId: generateArbitrageAlerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_role:
+                  type: string
+                  enum: [individual, business, lawyer, researcher]
+                jurisdiction:
+                  type: string
+                legal_interests:
+                  type: array
+                  items:
+                    type: string
+                alert_frequency:
+                  type: string
+      responses:
+        '200':
+          description: Arbitrage opportunities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArbitrageResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/trends/model:
+    post:
+      tags:
+        - oracle
+      summary: Model legal evolution
+      description: Model trends in legal evolution
+      operationId: modelLegalEvolution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvolutionRequest'
+      responses:
+        '200':
+          description: Legal evolution model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvolutionResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Gemini service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    OutcomeRequest:
+      type: object
+      required:
+        - case_type
+        - jurisdiction
+        - key_facts
+      properties:
+        case_type:
+          type: string
+          example: contract_dispute
+        jurisdiction:
+          type: string
+          example: California
+        key_facts:
+          type: string
+          example: Breach of contract for late delivery
+        judge_name:
+          type: string
+          nullable: true
+
+    OutcomeResponse:
+      type: object
+      properties:
+        predicted_outcome:
+          type: string
+        probabilities:
+          type: object
+          additionalProperties:
+            type: number
+        reasoning:
+          type: string
+        confidence:
+          type: number
+
+    StrategyRequest:
+      type: object
+      properties:
+        case_id:
+          type: string
+          nullable: true
+        case_details:
+          type: string
+          nullable: true
+
+    StrategyResponse:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            type: object
+            properties:
+              strategy:
+                type: string
+              success_probability:
+                type: number
+              rationale:
+                type: string
+              timeline:
+                type: string
+              cost_estimate:
+                type: string
+        overall_recommendation:
+          type: string
+
+    SimulationRequest:
+      type: object
+      required:
+        - strategy
+        - opponent_type
+      properties:
+        case_id:
+          type: string
+          nullable: true
+        strategy:
+          type: string
+        opponent_type:
+          type: string
+          enum: [opposing_counsel, judge, ai_system]
+        simulation_parameters:
+          type: object
+
+    SimulationResponse:
+      type: object
+      properties:
+        simulation_id:
+          type: string
+        case_id:
+          type: string
+          nullable: true
+        success_rate:
+          type: number
+        opponent_response:
+          type: string
+        key_insights:
+          type: array
+          items:
+            type: string
+        confidence_score:
+          type: number
+
+    JurisdictionRequest:
+      type: object
+      required:
+        - case_type
+        - key_facts
+      properties:
+        case_type:
+          type: string
+        key_facts:
+          type: string
+
+    JurisdictionResponse:
+      type: object
+      properties:
+        recommended:
+          type: string
+        rationale:
+          type: string
+
+    ComplianceRequest:
+      type: object
+      required:
+        - industry
+      properties:
+        industry:
+          type: string
+        jurisdiction:
+          type: string
+          nullable: true
+
+    ComplianceResponse:
+      type: object
+      properties:
+        recommendations:
+          type: array
+          items:
+            type: string
+
+    TrendsRequest:
+      type: object
+      required:
+        - industry
+      properties:
+        industry:
+          type: string
+        jurisdiction:
+          type: string
+          nullable: true
+
+    TrendsResponse:
+      type: object
+      properties:
+        forecast:
+          type: string
+
+    PrecedentRequest:
+      type: object
+      required:
+        - case_id
+        - decision
+        - jurisdiction
+      properties:
+        case_id:
+          type: string
+        decision:
+          type: string
+        jurisdiction:
+          type: string
+
+    PrecedentResponse:
+      type: object
+      properties:
+        impact_analysis:
+          type: string
+        affected_cases:
+          type: array
+          items:
+            type: string
+
+    LandmarkRequest:
+      type: object
+      required:
+        - case_details
+      properties:
+        case_details:
+          type: string
+
+    LandmarkResponse:
+      type: object
+      properties:
+        likelihood:
+          type: number
+        justification:
+          type: string
+
+    ArbitrageResponse:
+      type: object
+      properties:
+        opportunities:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              description:
+                type: string
+              urgency:
+                type: string
+              expiration:
+                type: string
+                format: date-time
+
+    EvolutionRequest:
+      type: object
+      required:
+        - legal_domain
+        - time_horizon
+      properties:
+        legal_domain:
+          type: string
+        time_horizon:
+          type: string
+
+    EvolutionResponse:
+      type: object
+      properties:
+        trend_analysis:
+          type: string
+        evolution_model:
+          type: object
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+        code:
+          type: string
+          description: Optional error code for programmatic handling

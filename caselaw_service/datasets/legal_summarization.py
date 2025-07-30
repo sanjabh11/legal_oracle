@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from . import BaseStreamingDataset, register_dataset
 
 @register_dataset("legal_summarization")
@@ -7,7 +7,7 @@ class LegalSummarizationDataset(BaseStreamingDataset):
     HF_DATASET = "lighteval/legal_summarization"
 
     def _get_dataset(self):
-        return load_dataset(self.HF_DATASET, split="train", streaming=True)
+        return hf_datasets.load_dataset(self.HF_DATASET, split="train", streaming=True)
 
     def search(self, keyword: str, limit: int = 10):
         """Search for summaries containing the keyword."""

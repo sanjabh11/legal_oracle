@@ -4,16 +4,22 @@ LEGAL ORACLE is a transformative AI-powered legal intelligence platform designed
 
 ## Features
 
-- **Outcome Prediction**: Predict case outcomes with AI-powered analysis and judge behavioral patterns
-- **Strategy Optimization**: Optimize legal strategies for maximum success
-- **Strategy Simulation**: Test strategies against AI opponents
-- **Regulatory Forecasting**: Forecast upcoming regulatory changes
-- **Jurisdiction Optimization**: Find the best jurisdiction for your case
-- **Precedent Simulation**: Simulate the impact of legal precedents
-- **Legal Evolution**: Model long-term legal trends
-- **Compliance Optimization**: Optimize compliance strategies
-- **Landmark Prediction**: Predict future landmark cases
-- **Arbitrage Alerts**: Receive legal arbitrage opportunities
+- **AI-Powered Outcome Prediction**: Predict case outcomes with Gemini LLM and judge behavioral analysis
+- **Strategy Optimization**: Optimize legal strategies with AI-driven recommendations and Supabase persistence
+- **Strategy Simulation**: Simulate strategies against AI opponents; results stored for analytics
+- **Regulatory Forecasting**: Forecast legal/regulatory trends with advanced LLMs
+- **Jurisdiction Optimization**: Find optimal jurisdictions using AI and real-world data
+- **Precedent Simulation**: Simulate and analyze the impact of legal precedents
+- **Legal Evolution Modeling**: Model and visualize long-term legal trends
+- **Compliance Optimization**: Generate compliance strategies and track optimizations
+- **Landmark Prediction**: Predict future landmark cases using AI
+- **Arbitrage Alerts**: Receive real-time legal arbitrage opportunities
+- **Premium UI/UX**: Mobile-first, glassmorphism, hero section, fade-in/fade-out, smooth transitions, white serif fonts, and modern visual hierarchy
+- **Robust LocalStorage Caching**: Offline-first, cache fallback, and cache invalidation for dashboard and alerts
+- **Comprehensive Security**: Environment-based secret management, dependency audits, JWT handling, and no hardcoded secrets
+- **Full Test Coverage**: All backend and frontend features covered by automated tests (pytest, vitest); CI pipeline enforces test pass for deployment
+- **OpenAPI Spec**: All endpoints and models documented and validated
+- **Production Readiness**: CI/CD, security audits, and code review complete
 
 ## Getting Started
 
@@ -153,7 +159,6 @@ For details, see `caselaw_service/README.md`.
 - Logging and caching use Supabase tables (see scripts)
 - For local testing, set `SKIP_JWT_VERIFY=true` in `.env`
 - See `wrapper.md` for advanced user stories, API usage, and integration patterns
-- See `caselaw_service/README.md` for troubleshooting and dev workflow
 
 ---
 

@@ -1,0 +1,44 @@
+[
+  {
+    "endpoint": "/api/v1/outcome/predict",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  },
+  {
+    "endpoint": "/api/v1/strategy/optimize",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  },
+  {
+    "endpoint": "/api/v1/simulation/run",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  },
+  {
+    "endpoint": "/api/v1/jurisdiction/optimize",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  },
+  {
+    "endpoint": "/api/v1/compliance/optimize",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  },
+  {
+    "endpoint": "/api/v1/trends/forecast",
+    "status": "FAIL",
+    "status_code": 0,
+    "response": null,
+    "error": "All connection attempts failed"
+  }
+]

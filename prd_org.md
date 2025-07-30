@@ -322,11 +322,11 @@ Accessibility: Support multilingual interfaces and WCAG 2.1 compliance.
 System Architecture
 
 Frontend: React-based SPA on Netlify, using localStorage for caching case details, strategies, and predictions.
-Backend: Node.js with Express, integrated with SupaBase PostgreSQL and Gemini 2.5 Flash LLM.
+Backend: Python 3.10 with FastAPI, integrated with SupaBase PostgreSQL and Gemini 2.5 Flash LLM.
 Data Flow: Users input case details via API, stored in SupaBase, processed by LLM, and results cached locally or returned via API.
 
 API Implementation Plan
-The API is a RESTful service built with Node.js and Express, deployed on Netlify Functions, with SupaBase for storage and authentication. Local browser storage caches user settings, case details, and recent predictions to reduce server load.
+The API is a RESTful service built with Python 3.10 and FastAPI, deployed on Netlify Functions, with SupaBase for storage and authentication. Local browser storage caches user settings, case details, and recent predictions to reduce server load.
 API Endpoints
 
 

@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from dataclasses import dataclass
 from typing import List, Dict, Optional
 from . import BaseStreamingDataset, register_dataset
@@ -25,7 +25,7 @@ class IndianLegalDataset(BaseStreamingDataset):
     def _get_dataset(self):
         """Load dataset lazily and cache instance."""
         if not hasattr(self, "_ds"):
-            self._ds = load_dataset(self.HF_DATASET, split="train", streaming=True)
+            self._ds = hf_datasets.load_dataset(self.HF_DATASET, split="train", streaming=True)
         return self._ds
 
     def search(self, keyword: str, limit: int = 10):

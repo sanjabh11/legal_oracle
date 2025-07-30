@@ -27,18 +27,31 @@ export function Dashboard() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Load cases from API or localStorage
+        // Try to load cases from the API
         const casesData = await cases.getCases();
-        setRecentCases(casesData);
-        
-        // Load alerts from localStorage
-        const cachedAlerts = localStorage.getItem('legal_oracle_alerts');
-        if (cachedAlerts) {
-          setAlerts(JSON.parse(cachedAlerts));
-        }
+        // Fallback to empty array if undefined/null
+        setRecentCases(Array.isArray(casesData) ? casesData : []);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
+        // Fallback: load cases from LocalStorage if available
+        const cachedCases = localStorage.getItem('legal_oracle_cases');
+        if (cachedCases) {
+          try {
+            setRecentCases(JSON.parse(cachedCases));
+          } catch (e) {
+            console.warn('Failed to parse cached cases:', e);
+          }
+        }
       } finally {
+        // Always attempt to load alerts from LocalStorage
+        const cachedAlerts = localStorage.getItem('legal_oracle_alerts');
+        if (cachedAlerts) {
+          try {
+            setAlerts(JSON.parse(cachedAlerts));
+          } catch (e) {
+            console.warn('Failed to parse cached alerts:', e);
+          }
+        }
         setLoading(false);
       }
     };

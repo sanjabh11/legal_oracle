@@ -1,0 +1,510 @@
+{
+  "summary": {
+    "total_tests": 21,
+    "passed_tests": 18,
+    "failed_tests": 3,
+    "success_rate": 85.71428571428571,
+    "duration_seconds": 0.07,
+    "timestamp": "2025-07-29T13:51:43.984280",
+    "categories": {
+      "gemini_integration": {
+        "total": 3,
+        "passed": 0,
+        "failed": 3,
+        "tests": [
+          {
+            "category": "gemini_integration",
+            "test_name": "predict_outcome",
+            "status": "FAIL",
+            "error": "GEMINI_API_KEY environment variable is required for real predictions",
+            "timestamp": "2025-07-29T13:51:43.911878"
+          },
+          {
+            "category": "gemini_integration",
+            "test_name": "optimize_strategy",
+            "status": "FAIL",
+            "error": "GEMINI_API_KEY environment variable is required for real strategy optimization",
+            "timestamp": "2025-07-29T13:51:43.911906"
+          },
+          {
+            "category": "gemini_integration",
+            "test_name": "simulate_strategy",
+            "status": "FAIL",
+            "error": "GEMINI_API_KEY environment variable is required for real strategy simulation",
+            "timestamp": "2025-07-29T13:51:43.911917"
+          }
+        ]
+      },
+      "api_models": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "tests": [
+          {
+            "category": "api_models",
+            "test_name": "OutcomeRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984076"
+          },
+          {
+            "category": "api_models",
+            "test_name": "StrategyRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984118"
+          },
+          {
+            "category": "api_models",
+            "test_name": "SimulationRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984125"
+          },
+          {
+            "category": "api_models",
+            "test_name": "JurisdictionRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984129"
+          },
+          {
+            "category": "api_models",
+            "test_name": "ComplianceRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984132"
+          },
+          {
+            "category": "api_models",
+            "test_name": "TrendsRequest",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984135"
+          }
+        ]
+      },
+      "user_story_mapping": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "tests": [
+          {
+            "category": "user_story_mapping",
+            "story": "As a legal professional, I want to predict case outcomes",
+            "endpoint": "/outcome/predict",
+            "implementation": "gemini_client.predict_outcome",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984194"
+          },
+          {
+            "category": "user_story_mapping",
+            "story": "As a legal professional, I want to optimize legal strategies",
+            "endpoint": "/strategy/optimize",
+            "implementation": "gemini_client.optimize_strategy",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984206"
+          },
+          {
+            "category": "user_story_mapping",
+            "story": "As a legal professional, I want to simulate legal strategies",
+            "endpoint": "/simulation/run",
+            "implementation": "gemini_client.simulate_strategy",
+            "status": "PASS",
+            "timestamp": "2025-07-29T13:51:43.984212"
+          }
+        ]
+      },
+      "endpoint_functionality": {
+        "total": 9,
+        "passed": 9,
+        "failed": 0,
+        "tests": [
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/outcome/predict",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984223"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/strategy/optimize",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984227"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/simulation/run",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984231"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/precedent/simulate",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984234"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/jurisdiction/optimize",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984237"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/compliance/optimize",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984240"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/trends/forecast",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984243"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/trends/model",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984246"
+          },
+          {
+            "category": "endpoint_functionality",
+            "endpoint": "/arbitrage/alerts",
+            "status": "PASS",
+            "note": "Endpoint structure validated",
+            "timestamp": "2025-07-29T13:51:43.984249"
+          }
+        ]
+      }
+    }
+  },
+  "categories": {
+    "gemini_integration": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "tests": [
+        {
+          "category": "gemini_integration",
+          "test_name": "predict_outcome",
+          "status": "FAIL",
+          "error": "GEMINI_API_KEY environment variable is required for real predictions",
+          "timestamp": "2025-07-29T13:51:43.911878"
+        },
+        {
+          "category": "gemini_integration",
+          "test_name": "optimize_strategy",
+          "status": "FAIL",
+          "error": "GEMINI_API_KEY environment variable is required for real strategy optimization",
+          "timestamp": "2025-07-29T13:51:43.911906"
+        },
+        {
+          "category": "gemini_integration",
+          "test_name": "simulate_strategy",
+          "status": "FAIL",
+          "error": "GEMINI_API_KEY environment variable is required for real strategy simulation",
+          "timestamp": "2025-07-29T13:51:43.911917"
+        }
+      ]
+    },
+    "api_models": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "tests": [
+        {
+          "category": "api_models",
+          "test_name": "OutcomeRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984076"
+        },
+        {
+          "category": "api_models",
+          "test_name": "StrategyRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984118"
+        },
+        {
+          "category": "api_models",
+          "test_name": "SimulationRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984125"
+        },
+        {
+          "category": "api_models",
+          "test_name": "JurisdictionRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984129"
+        },
+        {
+          "category": "api_models",
+          "test_name": "ComplianceRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984132"
+        },
+        {
+          "category": "api_models",
+          "test_name": "TrendsRequest",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984135"
+        }
+      ]
+    },
+    "user_story_mapping": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "tests": [
+        {
+          "category": "user_story_mapping",
+          "story": "As a legal professional, I want to predict case outcomes",
+          "endpoint": "/outcome/predict",
+          "implementation": "gemini_client.predict_outcome",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984194"
+        },
+        {
+          "category": "user_story_mapping",
+          "story": "As a legal professional, I want to optimize legal strategies",
+          "endpoint": "/strategy/optimize",
+          "implementation": "gemini_client.optimize_strategy",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984206"
+        },
+        {
+          "category": "user_story_mapping",
+          "story": "As a legal professional, I want to simulate legal strategies",
+          "endpoint": "/simulation/run",
+          "implementation": "gemini_client.simulate_strategy",
+          "status": "PASS",
+          "timestamp": "2025-07-29T13:51:43.984212"
+        }
+      ]
+    },
+    "endpoint_functionality": {
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "tests": [
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/outcome/predict",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984223"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/strategy/optimize",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984227"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/simulation/run",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984231"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/precedent/simulate",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984234"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/jurisdiction/optimize",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984237"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/compliance/optimize",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984240"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/trends/forecast",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984243"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/trends/model",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984246"
+        },
+        {
+          "category": "endpoint_functionality",
+          "endpoint": "/arbitrage/alerts",
+          "status": "PASS",
+          "note": "Endpoint structure validated",
+          "timestamp": "2025-07-29T13:51:43.984249"
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "category": "gemini_integration",
+      "test_name": "predict_outcome",
+      "status": "FAIL",
+      "error": "GEMINI_API_KEY environment variable is required for real predictions",
+      "timestamp": "2025-07-29T13:51:43.911878"
+    },
+    {
+      "category": "gemini_integration",
+      "test_name": "optimize_strategy",
+      "status": "FAIL",
+      "error": "GEMINI_API_KEY environment variable is required for real strategy optimization",
+      "timestamp": "2025-07-29T13:51:43.911906"
+    },
+    {
+      "category": "gemini_integration",
+      "test_name": "simulate_strategy",
+      "status": "FAIL",
+      "error": "GEMINI_API_KEY environment variable is required for real strategy simulation",
+      "timestamp": "2025-07-29T13:51:43.911917"
+    },
+    {
+      "category": "api_models",
+      "test_name": "OutcomeRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984076"
+    },
+    {
+      "category": "api_models",
+      "test_name": "StrategyRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984118"
+    },
+    {
+      "category": "api_models",
+      "test_name": "SimulationRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984125"
+    },
+    {
+      "category": "api_models",
+      "test_name": "JurisdictionRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984129"
+    },
+    {
+      "category": "api_models",
+      "test_name": "ComplianceRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984132"
+    },
+    {
+      "category": "api_models",
+      "test_name": "TrendsRequest",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984135"
+    },
+    {
+      "category": "user_story_mapping",
+      "story": "As a legal professional, I want to predict case outcomes",
+      "endpoint": "/outcome/predict",
+      "implementation": "gemini_client.predict_outcome",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984194"
+    },
+    {
+      "category": "user_story_mapping",
+      "story": "As a legal professional, I want to optimize legal strategies",
+      "endpoint": "/strategy/optimize",
+      "implementation": "gemini_client.optimize_strategy",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984206"
+    },
+    {
+      "category": "user_story_mapping",
+      "story": "As a legal professional, I want to simulate legal strategies",
+      "endpoint": "/simulation/run",
+      "implementation": "gemini_client.simulate_strategy",
+      "status": "PASS",
+      "timestamp": "2025-07-29T13:51:43.984212"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/outcome/predict",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984223"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/strategy/optimize",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984227"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/simulation/run",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984231"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/precedent/simulate",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984234"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/jurisdiction/optimize",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984237"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/compliance/optimize",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984240"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/trends/forecast",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984243"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/trends/model",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984246"
+    },
+    {
+      "category": "endpoint_functionality",
+      "endpoint": "/arbitrage/alerts",
+      "status": "PASS",
+      "note": "Endpoint structure validated",
+      "timestamp": "2025-07-29T13:51:43.984249"
+    }
+  ],
+  "recommendations": [
+    "Set GEMINI_API_KEY environment variable for real API calls",
+    "Run server tests with uvicorn server running",
+    "Review failed tests for specific error messages",
+    "Consider adding integration tests with actual database"
+  ]
+}

@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from . import BaseStreamingDataset, register_dataset
 
 @register_dataset("legal_contracts")
@@ -17,7 +17,7 @@ class LegalContractsDataset(BaseStreamingDataset):
             filters: Dict of metadata filters, e.g. {"contract_type": "NDA", "party": "Acme Corp"}
         """
         try:
-            ds = load_dataset(self.HF_DATASET, split="train", streaming=True)
+            ds = hf_datasets.load_dataset(self.HF_DATASET, split="train", streaming=True)
             results = []
             if fields is None:
                 fields = [field] if field else ["text"]

@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from . import BaseStreamingDataset, register_dataset
 
 @register_dataset("pile_of_law")
@@ -9,7 +9,7 @@ class PileOfLawDataset(BaseStreamingDataset):
     def _get_dataset(self, subset: str = None):
         if not subset:
             raise ValueError("You must specify a valid subset (data_dir) for pile-of-law. Example: 'courtListener_opinions'.")
-        return load_dataset(self.HF_DATASET, config_name=subset, split="train", streaming=True, trust_remote_code=True)
+        return hf_datasets.load_dataset(self.HF_DATASET, config_name=subset, split="train", streaming=True, trust_remote_code=True)
 
     def search(self, keyword: str, limit: int = 10, subset: str = None):
         """Stream and search for keyword in the given subset (data_dir)."""

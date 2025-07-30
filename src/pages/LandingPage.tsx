@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Scale, Brain, TrendingUp, Shield, Zap, Users, Award, Globe } from 'lucide-react';
 
+import { useEffect } from 'react';
+
 export function LandingPage() {
   const features = [
     {
@@ -32,47 +34,70 @@ export function LandingPage() {
     { icon: <Globe className="h-6 w-6" />, title: 'Researchers', desc: 'Legal trend analysis' },
   ];
 
+  // Fade-in on scroll effect
+  useEffect(() => {
+    const fadeEls = document.querySelectorAll('.fade-in-scroll');
+    const observer = new window.IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    fadeEls.forEach(el => {
+      observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-900/80 to-indigo-900/90 relative overflow-x-hidden">
+      {/* Full-width glassmorphism hero background */}
+      <div className="absolute inset-0 w-full h-[60vh] md:h-[75vh] bg-cover bg-center z-0" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80)'}}>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-indigo-900/80" />
+        <div className="absolute inset-0 backdrop-blur-md bg-white/10" />
+      </div>
       {/* Header */}
-      <header className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <Scale className="h-10 w-10 text-blue-800" />
-              <h1 className="text-2xl font-bold text-gray-900">LEGAL ORACLE</h1>
-            </div>
-            <Link
-              to="/auth"
-              className="bg-blue-800 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-900 transition-colors"
-            >
-              Get Started
-            </Link>
+      <header className="relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <Scale className="h-10 w-10 text-blue-200 drop-shadow" />
+            <h1 className="text-3xl font-serif font-bold text-white tracking-widest drop-shadow-xl">LEGAL ORACLE</h1>
           </div>
+          <Link
+            to="/auth"
+            className="bg-white/30 text-white border border-white px-6 py-2 rounded-xl font-semibold shadow-xl hover:bg-white/60 hover:text-blue-900 transition-all duration-300 backdrop-blur-md"
+          >
+            Get Started
+          </Link>
         </div>
       </header>
-
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            The Future of
-            <span className="text-blue-800 block">Legal Intelligence</span>
+      <section className="relative z-10 flex items-center justify-center h-[60vh] md:h-[75vh] w-full">
+        <div className="w-full flex flex-col items-center justify-center text-center fade-in-scroll opacity-0 translate-y-8 transition-all duration-1000">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-8 drop-shadow-xl leading-tight">
+            The Future of <br />
+            <span className="text-blue-200/90 bg-white/20 px-4 py-2 rounded-2xl shadow-lg backdrop-blur-md inline-block mt-4">
+              Legal Intelligence
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Harness the power of AI to predict legal outcomes, optimize strategies, and stay ahead of regulatory changes. 
+          <p className="text-lg md:text-2xl text-blue-100 max-w-2xl mx-auto mb-10 font-serif drop-shadow-xl">
+            Harness the power of AI to predict legal outcomes, optimize strategies, and stay ahead of regulatory changes.<br className="hidden md:block" />
             Transform how you navigate the legal landscape with unprecedented insights.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/auth"
-              className="bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-900 transition-colors shadow-lg"
+              className="bg-white/90 text-blue-900 px-8 py-4 rounded-2xl text-lg font-bold font-serif shadow-xl hover:bg-white/100 hover:scale-105 transition-all duration-300"
             >
               Start Free Trial
             </Link>
             <Link
               to="/auth"
-              className="border-2 border-blue-800 text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors"
+              className="border-2 border-white text-white px-8 py-4 rounded-2xl text-lg font-bold font-serif hover:bg-white/20 hover:text-blue-900 transition-all duration-300"
             >
               Try as Guest
             </Link>

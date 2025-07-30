@@ -5,7 +5,7 @@ import time
 import psutil
 import os
 from datetime import datetime
-from ..auth import get_current_admin_user
+from caselaw_service.auth import get_current_admin_user
 from .datasets.dal import get_dataset_dal
 
 router = APIRouter(prefix="/admin", tags=["admin"])

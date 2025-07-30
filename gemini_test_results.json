@@ -1,0 +1,68 @@
+[
+  {
+    "test": "predict_outcome",
+    "status": "PASS",
+    "result": {
+      "predicted_outcome": "win",
+      "probabilities": {
+        "win": 0.75,
+        "lose": 0.15,
+        "settle": 0.1
+      },
+      "reasoning": "Strong evidence supports the plaintiff's position",
+      "confidence": 0.85
+    },
+    "error": null
+  },
+  {
+    "test": "optimize_strategy",
+    "status": "PASS",
+    "result": {
+      "recommendations": [
+        {
+          "strategy": "Negotiate settlement with mediation",
+          "success_probability": 0.75,
+          "rationale": "Cost-effective resolution with high success rate",
+          "timeline": "4-6 weeks",
+          "cost_estimate": "medium"
+        },
+        {
+          "strategy": "Aggressive litigation approach",
+          "success_probability": 0.65,
+          "rationale": "Strong evidence supports court victory",
+          "timeline": "6-12 months",
+          "cost_estimate": "high"
+        },
+        {
+          "strategy": "Direct settlement negotiation",
+          "success_probability": 0.85,
+          "rationale": "Opponent likely to avoid lengthy litigation",
+          "timeline": "2-3 weeks",
+          "cost_estimate": "low"
+        }
+      ],
+      "overall_recommendation": "Negotiate settlement with mediation"
+    },
+    "error": null
+  },
+  {
+    "test": "simulate_strategy",
+    "status": "PASS",
+    "result": {
+      "success_rate": 0.78,
+      "opponent_response": "Opponent likely to settle given strong evidence and favorable timeline",
+      "key_insights": [
+        "Strong evidence supports the chosen strategy",
+        "Timeline is favorable for the approach",
+        "Opponent has limited counter-strategies"
+      ],
+      "confidence_score": 0.82,
+      "simulation_details": {
+        "scenarios_tested": 100,
+        "win_rate": 0.78,
+        "settlement_rate": 0.18
+      }
+    },
+    "error": null
+  }
+]

@@ -4,7 +4,7 @@ import json
 from typing import Dict, Any, List
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
-from ..auth import get_current_admin_user
+from caselaw_service.auth import get_current_admin_user
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 

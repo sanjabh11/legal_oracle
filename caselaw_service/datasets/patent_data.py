@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from . import BaseStreamingDataset, register_dataset
 
 @register_dataset("patent_data")
@@ -16,7 +16,7 @@ class PatentDataDataset(BaseStreamingDataset):
             fields: List of field names to search (e.g., ["abstract", "claims", "title"])
             filters: Dict of metadata filters, e.g. {"year": "2022", "inventor": "Smith"}
         """
-        ds = load_dataset(self.HF_DATASET, split="train", streaming=True)
+        ds = hf_datasets.load_dataset(self.HF_DATASET, split="train", streaming=True)
         results = []
         if fields is None:
             fields = [field] if field else ["abstract"]

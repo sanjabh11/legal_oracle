@@ -1,0 +1,74 @@
+{
+  "timestamp": "2025-07-29T13:49:53+05:30",
+  "test_environment": {
+    "gemini_api_configured": false,
+    "python_version": "3.13",
+    "framework": "FastAPI"
+  },
+  "model_validation": {
+    "total_tests": 6,
+    "passed": 4,
+    "failed": 2,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "OutcomeRequest",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "test": "StrategyRequest",
+        "status": "FAIL",
+        "error": "1 validation error for StrategyRequest\ncase_id\n  Field required [type=missing, input_value={'case_details': 'Contrac...ttlement', 'mediation']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing"
+      },
+      {
+        "test": "SimulationRequest",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "test": "JurisdictionRequest",
+        "status": "FAIL",
+        "error": "1 validation error for JurisdictionRequest\nkey_facts\n  Input should be a valid string [type=string_type, input_value=['test'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type"
+      },
+      {
+        "test": "ComplianceRequest",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "test": "TrendsRequest",
+        "status": "PASS",
+        "error": null
+      }
+    ]
+  },
+  "integration_tests": {
+    "total_tests": 3,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 3,
+    "details": [
+      {
+        "test": "predict_outcome",
+        "status": "SKIP",
+        "error": "API key required"
+      },
+      {
+        "test": "optimize_strategy",
+        "status": "SKIP",
+        "error": "API key required"
+      },
+      {
+        "test": "simulate_strategy",
+        "status": "SKIP",
+        "error": "API key required"
+      }
+    ]
+  },
+  "summary": {
+    "all_models_valid": false,
+    "api_key_configured": false,
+    "ready_for_production": false
+  }
+}

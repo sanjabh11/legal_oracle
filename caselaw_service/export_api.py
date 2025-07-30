@@ -6,7 +6,7 @@ import json
 import io
 from datetime import datetime
 from typing import Optional
-from ..auth import get_current_user
+from caselaw_service.auth import get_current_user
 from .datasets import get_dataset
 
 router = APIRouter(prefix="/export", tags=["export"])

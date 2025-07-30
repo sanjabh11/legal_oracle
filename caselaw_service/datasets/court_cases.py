@@ -1,4 +1,4 @@
-from datasets import load_dataset
+import datasets as hf_datasets
 from . import BaseStreamingDataset, register_dataset
 
 @register_dataset("court_cases")
@@ -10,9 +10,9 @@ class CourtCasesDataset(BaseStreamingDataset):
         try:
             # Try 'us' split first, fallback to 'train' if needed
             try:
-                return load_dataset(self.HF_DATASET, split="us", streaming=True)
+                return hf_datasets.load_dataset(self.HF_DATASET, split="us", streaming=True)
             except Exception:
-                return load_dataset(self.HF_DATASET, split="train", streaming=True)
+                return hf_datasets.load_dataset(self.HF_DATASET, split="train", streaming=True)
         except Exception:
             return []
 

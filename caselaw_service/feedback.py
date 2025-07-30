@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Dict, Any, List
 from datetime import datetime
-from ..auth import get_current_user
+from caselaw_service.auth import get_current_user
 
 router = APIRouter(prefix="/feedback", tags=["feedback"])
 
