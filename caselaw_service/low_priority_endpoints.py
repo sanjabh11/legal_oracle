@@ -3,7 +3,7 @@ Low priority endpoint implementations
 /trends/model, /arbitrage/alerts, and landmark enhancements
 """
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from typing import Dict, Any, List
 from caselaw_service.api_models import (
     TrendsRequest, TrendsResponse,
